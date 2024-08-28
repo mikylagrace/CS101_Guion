@@ -1,2 +1,2 @@
 num = 1 + 1 
-add = x
+add = 2
