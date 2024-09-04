@@ -24,11 +24,33 @@ age <-c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 
 2. Reciprocal
 ```{r}
 reciprocal <- 1/age
-print(reciprocal)
+library("MASS")
+fractions(reciprocal)
 ```
+Write the R code and its output
+Code:
+reciprocal <- 1/age
+print(reciprocal)
+
+Output:
 [1] 0.02941176 0.03571429 0.04545455 0.02777778 0.03703704 0.05555556##  
 [7] 0.01923077 0.02564103 0.02380952 0.03448276 0.02857143 0.03225806## 
 [13] 0.03703704 0.04545455 0.02702703 0.02941176 0.05263158 0.05000000## 
 [19] 0.01754386 0.02040816 0.02000000 0.02702703 0.02173913 0.04000000## 
 [25] 0.05882353 0.02702703 0.02380952 0.01886792 0.02439024 0.01960784## 
 [31] 0.02857143 0.04166667 0.03030303 0.024390241
+
+3.
+```{r}
+new_age <- c(age, 0, age)
+print(new_age)
+```
+What happen to the new_age?
+
++ When new_age is printed, th same values of age is printed, then 0, then the values of age.
+
+4.
+```{r}
+sort(age)
+```
+
