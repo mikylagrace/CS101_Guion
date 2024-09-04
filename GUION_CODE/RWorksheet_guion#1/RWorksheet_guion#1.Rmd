@@ -14,35 +14,27 @@ age <-c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31,
 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 
 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
 ```
-a. How many data points? 
+a.
 ```{r}
 length(age)
 ```
-b. Write the R code and its output
-
-Code:
-
+# Code: 
 length(age)
 
-Output:
+# Output: 
+34
 
-age <-c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 42, 53, 41, 51, 35, 24, 33, 41)
-
-2. Reciprocal
+2. 
 ```{r}
 reciprocal <- 1/age
 library("MASS")
 fractions(reciprocal)
 ```
-
-Write the R code and its output
-
-Code:
-
+# Code: 
 reciprocal <- 1/age
 print(reciprocal)
 
-Output:
+# Output:
 [1] 0.02941176 0.03571429 0.04545455 0.02777778 0.03703704 0.05555556##  
 [7] 0.01923077 0.02564103 0.02380952 0.03448276 0.02857143 0.03225806## 
 [13] 0.03703704 0.04545455 0.02702703 0.02941176 0.05263158 0.05000000## 
@@ -55,19 +47,18 @@ Output:
 new_age <- c(age, 0, age)
 print(new_age)
 ```
-What happen to the new_age?
 
-+ When new_age is printed, th same values of age is printed, then 0, then the values of age.
+# + When new_age is printed, th same values of age is printed, then 0, then the values of age.
 
 4.
 ```{r}
 sort(age)
 ```
-Code: 
+# Code: 
 
 sort(age)
 
-Output:
+# Output:
 
  [1] 17 18 19 20 22 22 24 25 27 27 28 29 31 33 34 34 35 35 36 37
 [21] 37 37 39 41 41 42 42 46 49 50 51 52 53 57
@@ -78,12 +69,12 @@ Output:
 min(age)
 max(age)
 ```
-Code:
+# Code:
 
 min(age)
 max(age)
 
-Output:
+# Output:
 
 [1] 17
 [1] 57
@@ -96,12 +87,12 @@ data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5,
 ```{r}
 length(data)
 ```
-Code a and Output a:
+# Code a and Output a:
 
 data <- c(2.4, 2.8, 2.1, 2.5, 2.4, 2.2, 2.5,
 2.3, 2.5, 2.3, 2.4, 2.7)
 
-Code b and Output b:
+# Code b and Output b:
 
 length(data)
 
@@ -112,7 +103,26 @@ length(data)
 data2 <- data
 data * 2
 ```
-+ The data multiplied itself into two
+# + The data multiplied itself into two
 
 8.1
+```{r}
+seq(1:100)
+```
+8.2
+```{r}
+seq(20,60)
+```
+8.3
+```{r}
+mean(20:60)
+```
+8.4
+```{r}
+sum(51:91)
+```
+8.5
+```{r}
+seq(1:1000)
+```
 
