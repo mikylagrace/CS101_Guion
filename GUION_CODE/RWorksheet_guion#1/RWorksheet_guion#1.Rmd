@@ -76,46 +76,56 @@ data * 2
 8.
 8.1
 ```{r}
-seq(1:100)
+int1 <- seq(1,100)
+int1
 ```
 8.2
 ```{r}
-seq(20,60)
+int2 <- seq(20,60)
+int2
 ```
 8.3
 ```{r}
-mean(20:60)
+int3 <- mean(20:60)
+int3
 ```
 8.4
 ```{r}
-sum(51:91)
+int4 <- sum(51:91)
+int4
+```
+8.5 
+```{r}
+thousands <- seq(1:1000)
+thousands
 ```
 # a.How many data points from 8.1 to 8.4?
 ```{r}
-length(seq) + length(seq) + length(mean) + length(sum)
+length(int1) + length(int2) + length(int3) + length(int4)
 ```
 # b. Write the R code and its output from 8.1 to 8.4.
 8.1
 ```{r}
-seq(1:100)
+int1 <- seq(1,100)
+int1
 ```
 8.2
 ```{r}
-seq(20,60)
+int2 <- seq(20,60)
+int2
 ```
 8.3
 ```{r}
-mean(20:60)
+int3 <- mean(20:60)
+int3
 ```
 8.4
 ```{r}
-sum(51:91)
-```
-```{r}
-length(integer)+length(mean)+length(sum)
+int4 <- sum(51:91)
+int4
 ```
 # c.For 8.5 find only maximum data points until 10. 
-8.5 *
+8.5
 ```{r}
 thousands <- seq(1:1000)
 thousands
@@ -135,15 +145,30 @@ backwards <- seq(100, 1)
 print(backwards)
 ```
 
-11. *
+11. 
 ```{r}
-numbers <- 1: 24
-multiples <- numbers[numbers %% 3 == 0 | numbers %% 5 == 0]
+natnum <- 1: 24
+multiples <- natnum[natnum %% 3 == 0 | natnum %% 5 == 0]
 print(multiples)
 sum_multiples <- sum(multiples)
 print(sum_multiples)
 ```
-
+# a. How many data points from 10 to 11?
+```{r}
+length(backwards) + length(multiples) + length(sum_multiples)
+```
+# b.
+```{r}
+backwards <- seq(100, 1)
+print(backwards)
+```
+```{r}
+natnum <- 1: 24
+multiples <- natnum[natnum %% 3 == 0 | natnum %% 5 == 0]
+print(multiples)
+sum_multiples <- sum(multiples)
+print(sum_multiples)
+```
 12. 
 ```{r}
 #x <- {0 + x + 5 + }
