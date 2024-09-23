@@ -1,0 +1,10 @@
+---
+title: "RWorksheet_guion#2"
+author: "Mikyla Grace Guion"
+date: "2024-09-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
