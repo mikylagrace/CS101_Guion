@@ -106,6 +106,38 @@ b.
 ```{r}
 print(data)
 ```
+8.
+a.
+```{r}
+PowerRanking <-c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
+
+CelebName <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pitt", "Peter Jackson", "Dr. Phil McGaw", "Jay Lenon", "Celine Dion", "Kobe Bryant")
+
+Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31 )
+
+print(PowerRanking)
+print(CelebName)
+print(Pay)
+```
+b.
+```{r}
+JK<- which(CelebName == "J.K. Rowling")
+PowerRanking[JK] <- 15
+Pay[JK] <- 90
+print(PowerRanking)
+print(CelebName)
+print(Pay)
+```
+
+
+
+
+
+
+
+
+
+
 10.
 a.
 ```{r}
