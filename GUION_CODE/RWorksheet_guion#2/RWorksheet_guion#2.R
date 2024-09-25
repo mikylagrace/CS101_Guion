@@ -118,8 +118,8 @@ print(SelectedCol)
 d.
 save(SelectedCol, file = "new.RData")
 e.
-head("new.RData")
-tail("new.RData")
+head(Selectedcol)
+tail(SelectedCol)
 
 10. 
   a. 

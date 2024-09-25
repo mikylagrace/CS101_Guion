@@ -647,10 +647,26 @@ print(SelectedCol)</code></pre>
 <ol start="5" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<pre class="r"><code>head(&quot;new.RData&quot;)</code></pre>
-<pre><code>## [1] &quot;new.RData&quot;</code></pre>
-<pre class="r"><code>tail(&quot;new.RData&quot;)</code></pre>
-<pre><code>## [1] &quot;new.RData&quot;</code></pre>
+<pre class="r"><code>head(SelectedCol)</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   country neighbourhood price stars accommodation_type rating            
+##   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             
+## 1 Austria 17. Hernals      81     4 Apartment          4.4000000000000004
+## 2 Austria 17. Hernals      81     4 Hotel              3.9               
+## 3 Austria Alsergrund       85     4 Hotel              3.7               
+## 4 Austria Alsergrund       83     3 Hotel              4                 
+## 5 Austria Alsergrund       82     4 Hotel              3.9               
+## 6 Austria Alsergrund      229     5 Apartment          4.8</code></pre>
+<pre class="r"><code>tail(SelectedCol)</code></pre>
+<pre><code>## # A tibble: 6 × 6
+##   country neighbourhood price stars accommodation_type rating            
+##   &lt;chr&gt;   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;              &lt;chr&gt;             
+## 1 Austria Wieden           73   3   Hotel              3.4               
+## 2 Austria Wieden          109   3   Apartment          5                 
+## 3 Austria Wieden          185   5   Hotel              4.3               
+## 4 Austria Wieden          100   4   Hotel              4.4000000000000004
+## 5 Austria Wieden           58   3   Hotel              3.2               
+## 6 Austria Wieden          110   3.5 Apartment          4</code></pre>
 <ol start="10" style="list-style-type: decimal">
 <li></li>
 </ol>

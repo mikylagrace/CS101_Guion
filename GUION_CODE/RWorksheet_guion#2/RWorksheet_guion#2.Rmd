@@ -174,13 +174,9 @@ save(SelectedCol, file = "new.RData")
 ```
 e.
 ```{r}
-head("new.RData")
-tail("new.RData")
+head(SelectedCol)
+tail(SelectedCol)
 ```
-
-
-
-
 10.
 a.
 ```{r}
