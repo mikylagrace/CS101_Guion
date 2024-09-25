@@ -153,10 +153,30 @@ e.
 9.
 a.
 ```{r}
+library(readxl)
 data <- read_excel("hotels-vienna.xlsx")
-print(data)
+head(data)
 ```
-
+b.
+```{r}
+dimensions <- dim(data)               
+print(dimensions)       
+```
+c.
+```{r}
+data <- read_xlsx("hotels-vienna.xlsx")
+SelectedCol <- data[c("country", "neighbourhood", "price", "stars", "accommodation_type", "rating")]
+print(SelectedCol)
+```
+d.
+```{r}
+save(SelectedCol, file = "new.RData")
+```
+e.
+```{r}
+head("new.RData")
+tail("new.RData")
+```
 
 
 
