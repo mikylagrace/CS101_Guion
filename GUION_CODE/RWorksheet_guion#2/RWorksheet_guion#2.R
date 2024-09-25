@@ -70,6 +70,57 @@ data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers)
 b.
 print(data)  
 
+8.
+a.
+PowerRanking <-c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25)
+
+CelebName <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donald Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pitt", "Peter Jackson", "Dr. Phil McGaw", "Jay Lenon", "Celine Dion", "Kobe Bryant")
+
+Pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31 )
+
+print(PowerRanking)
+print(CelebName)
+print(Pay)
+b.
+JK<- which(CelebName == "J.K Rowling")
+
+PowerRanking <- PowerRanking [-JK]
+CelebName <- CelebName[-JK]
+Pay <- Pay[-JK]
+
+PowerRanking <- append(PowerRanking, 15, after = 14)
+CelebName <- append(CelebName, "J.K Rowling", after = 14)
+Pay <- append(Pay, 90, after = 14)
+
+print(PowerRanking)
+print(CelebName)
+print(Pay)
+c.
+data <- read.csv("PowerRanking.csv")
+print(data)
+d.
+SubsetData <- data[10:20, ]
+save(SubsetData, file = "Ranks.RData")
+print(SubsetData)
+
+9.
+a.
+library(readxl)
+data <- read_excel("hotels-vienna.xlsx")
+head(data)
+b.
+dimensions <- dim(data)               
+print(dimensions) 
+c.
+data <- read_xlsx("hotels-vienna.xlsx")
+SelectedCol <- data[c("country", "neighbourhood", "price", "stars", "accommodation_type", "rating")]
+print(SelectedCol)
+d.
+save(SelectedCol, file = "new.RData")
+e.
+head("new.RData")
+tail("new.RData")
+
 10. 
   a. 
   vegetables <- c("Carrot", "Potato", "Spinach", "Corn", "Cucumber", "Okra", "Cabbage", "Cauliflower", "Tomato", "Pumpkin")
