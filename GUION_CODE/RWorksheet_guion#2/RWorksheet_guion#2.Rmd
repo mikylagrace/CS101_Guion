@@ -121,18 +121,41 @@ print(Pay)
 ```
 b.
 ```{r}
-JK<- which(CelebName == "J.K. Rowling")
-PowerRanking[JK] <- 15
-Pay[JK] <- 90
+JK<- which(CelebName == "J.K Rowling")
+
+PowerRanking <- PowerRanking [-JK]
+CelebName <- CelebName[-JK]
+Pay <- Pay[-JK]
+
+PowerRanking <- append(PowerRanking, 15, after = 14)
+CelebName <- append(CelebName, "J.K Rowling", after = 14)
+Pay <- append(Pay, 90, after = 14)
+
 print(PowerRanking)
 print(CelebName)
 print(Pay)
 ```
+c.
 
+```{r}
+data <- read.csv("PowerRanking.csv")
+print(data)
+```
+d.
+```{r}
+SubsetData <- data[10:20, ]
+save(SubsetData, file = "Ranks.RData")
+print(SubsetData)
+```
+e.
+#The output shows only rows from 10 until 20
 
-
-
-
+9.
+a.
+```{r}
+data <- read_excel("hotels-vienna.xlsx")
+print(data)
+```
 
 
 
