@@ -1,0 +1,146 @@
+---
+title: "3.a2"
+author: "Mikyla Grace Guion"
+date: "2024-10-01"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# VECTORS
+# 1.
+```{r}
+LETTERS <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+
+letters <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
+```
+
+# a.
+```{r}
+firstEl <- LETTERS[1:11]
+firstEl
+```
+# b. 
+```{r}
+oddNum <- LETTERS[seq(1, 26, by = 2)]
+oddNum
+```
+# c.
+```{r}
+vowels <- LETTERS[c(1, 5, 9, 15, 21)]
+vowels
+```
+# d.
+```{r}
+lowerCase <- letters[22:26]
+lowerCase
+```
+# e.
+```{r}
+lower <- letters[15:24]
+lower
+```
+# 2.
+# a.
+```{r}
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+city
+```
+# b.
+```{r}
+temp <- c(42, 39, 34, 34, 30, 27)
+temp
+```
+# c.
+```{r}
+dfCityAndTemp <- data.frame(city, temp)
+dfCityAndTemp
+```
+# d.
+```{r}
+names(dfCityAndTemp) <- c("City", "Temperature")
+dfCityAndTemp
+```
+# e.
+```{r}
+str(dfCityAndTemp)
+```
+# It shows the number of observations and variables. It also shows the data type of the 2 variables.It presents the contents of the data frame horizontally this time. Moreover, it only showed the first few observations of the variable City.
+
+# f.
+```{r}
+dfCityAndTemp[3:4, ]
+
+```
+# g.
+```{r}
+highestTemp <- dfCityAndTemp$City[which.max(dfCityAndTemp$Temperature)]
+lowestTemp <- dfCityAndTemp$City[which.min(dfCityAndTemp$Temperature)]
+
+highestTemp
+lowestTemp
+```
+# MATRICES
+# 2.
+# a.
+```{r}
+matOne <- matrix(c(1,2,3,4,5,6,7,8,11,12,13,14),3,4)
+matOne
+```
+# b. 
+```{r}
+multiply <- matOne * 2
+multiply
+```
+# c.
+```{r}
+rowTwo <- matOne[2, ]
+rowTwo
+```
+# d.
+```{r}
+customOne <- matOne[1:2, 3:4]
+customOne
+```
+# e.
+```{r}
+customTwo <- matOne[3, 2:3]
+customTwo
+```
+# f.
+```{r}
+colFour <- matOne[, 4]
+colFour
+```
+# g.
+```{r}
+rownames(multiply) <- c("isa", "dalawa", "tatlo") 
+colnames(multiply) <- c("uno", "dos", "tres", "quatro")
+multiply
+```
+# h.
+```{r}
+dim(matOne) <- c(6, 2)
+matOne
+```
+# ARRAY
+# 3.
+# a.
+```{r}
+arr <- rep(c(1, 2, 3, 6, 7, 8, 9, 0, 3, 4, 5, 1), 2)
+arra <- array(arr, dim = c(2, 4,3))
+arra
+```
+# b.
+```{r}
+dim(arra)
+```
+# c.
+```{r}
+rownames(arra) <- c("a", "b")
+colnames(arra) <- c("A", "B", "C", "D")
+dimnames(arra)[[3]] <- c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array")
+arra
+```
+
