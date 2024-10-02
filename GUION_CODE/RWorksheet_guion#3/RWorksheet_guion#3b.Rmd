@@ -1,0 +1,15 @@
+---
+title: "RWorksheet_guion#3b"
+author: "Mikyla Grace Guion"
+date: "2024-10-02"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+1.
+a.
+dfOne <- data.frame(
+
+)
