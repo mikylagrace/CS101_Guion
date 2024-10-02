@@ -113,4 +113,4 @@ SiblingSchool <- subset(HouseHold, Siblings_at_School >= 5)
 SiblingSchool
 ```
 # 4. Interpret the graph
-
+  The graph reveals that the highest number of the tweets per day from July 14, 2020 to July 21, 2020 are negative. The second highest number is positive and the least number of sentiments of tweets per day is neutral.
