@@ -8,8 +8,109 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-1.
-a.
+# 1.
+# a.
+```{r}
 dfOne <- data.frame(
-
+  Respondents = 1:20, 
+  Sex = c(2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2), 
+  FathersOccupation = c(1, 3, 3, 3, 1, 2, 3, 1, 1, 1, 3, 2, 1, 3, 3, 1, 3, 1, 2, 1), 
+  PersonsAtHome = c(5, 7, 3, 8, 5, 9, 6, 7, 8, 4, 7, 5, 4, 7, 8, 8, 3, 11, 7, 6), 
+  SiblingsAtSchool = c(6, 4, 4, 1, 2, 1, 5, 3, 1, 2, 3, 2, 5, 5, 2, 1, 2, 5, 3, 2), 
+  TypesOfHouses = c(1, 2, 3, 1, 1, 3, 3, 1, 2, 3, 2, 3, 2, 2, 3, 3, 3, 3, 3, 2)
 )
+
+dfOne
+
+
+```
+# b.
+```{r}
+str(dfOne)
+```
+# The structure shows the number of objects and variables in the data frame. It shows the first few contents of the data frame and also the data type of each column.
+
+# c.
+```{r}
+mean(dfOne$SiblingsAtSchool)
+```
+# d.
+```{r}
+subset<- dfOne[1:2, ]
+subset 
+
+```
+# e.
+```{r}
+subSetOne <- dfOne[c(3, 5), c(2, 4)]
+subSetOne
+
+```
+# f.
+```{r}
+types.houses <- dfOne$TypesOfHouses   
+```
+# g.
+```{r}
+maleFarmers <- subset(dfOne, Sex == 1 & FathersOccupation == 1)
+maleFarmers
+```
+# h.
+```{r}
+femaleSiblings <- subset(dfOne, Sex == 2 & SiblingsAtSchool >= 5)
+femaleSiblings
+```
+# 2.
+```{r}
+df = data.frame(Ints=integer(),
+          Doubles=double(), Characters=character(),
+          Logicals=logical(),
+          Factors=factor(),
+          stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+```
+# a.
+# The result shows the structure of the empty data frame. It shows 0 observations and 5 variables. I also shows different data types with no data yet.
+
+# 3.
+# a.
+```{r}
+HouseHold <- read.csv("HouseholdData.csv")
+HouseHold
+```
+# b.
+```{r}
+HouseHold$Sex <- factor(HouseHold$Sex, levels = c("Male", "Female"), labels = c(1, 2))
+HouseHold$Sex <- as.integer(as.character(HouseHold$Sex))
+HouseHold
+```
+# c.
+```{r}
+HouseHold$Types_of_Houses <- factor(HouseHold$Types_of_Houses, levels = c("Wood", "Congrete", "Semi-congrete"), labels = c(1, 2, 3))
+HouseHold$Types_of_Houses <- as.integer(as.character(HouseHold$Types_of_Houses))
+HouseHold
+
+```
+# d.
+```{r}
+HouseHold$Fathers_Occupation <- factor(HouseHold$Fathers_Occupation, 
+                                            levels = c(1, 2, 3), 
+                                            labels = c("Farmer", "Driver", "Others"))
+HouseHold
+```
+
+# e.
+```{r}
+femaleDriver <- subset(HouseHold, Sex == 2 & Fathers_Occupation == "Driver")
+femaleDriver
+```
+
+# f.
+```{r}
+SiblingSchool <- subset(HouseHold, Siblings_at_School >= 5)
+SiblingSchool
+```
+# 4. Interpret the graph
+
