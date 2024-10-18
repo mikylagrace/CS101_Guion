@@ -8,21 +8,20 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-1. The table below shows the data about shoe size and height. Create a data frame.
+# 1. Create a data frame.
 ```{r}
 houseHo <- data.frame(
-  Shoe_size = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0,               10.5,13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0,  13.0),
-  Height = c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0,               71.0, 71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0,                 72.0, 70.0, 69.0, 70.0),
-  Gender = c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M", 
-             "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
+  Shoe_size = c(6.5, 9.0, 8.5, 8.5, 10.5, 7.0, 9.5, 9.0, 13.0, 7.5, 10.5, 8.5, 12.0, 10.5,13.0, 11.5, 8.5, 5.0, 10.0, 6.5, 7.5, 8.5, 10.5, 8.5, 10.5, 11.0, 9.0,  13.0),
+  Height = c(66.0, 68.0, 64.5, 65.0, 70.0, 64.0, 70.0, 71.0, 72.0, 64.0, 74.5, 67.0, 71.0, 71.0, 77.0, 72.0, 59.0, 62.0, 72.0, 66.0, 64.0, 67.0, 73.0, 69.0,                 72.0, 70.0, 69.0, 70.0),
+  Gender = c("F", "F", "F", "F", "M", "F", "F", "F", "M", "F", "M", "F", "M", "M", "M", "M", "F", "F", "M", "F", "F", "M", "M", "F", "M", "M", "M", "M")
 )
 houseHo
 ```
 
-a. Describe the data
-The data Household Data shows the shoe size, height, and gender
+# a. Describe the data
+The data Household Data shows the shoe size, height, and gender.
 
-b. Create a subset by males and females with their corresponding shoe size and height.
+# b. Create a subset by males and females with their corresponding shoe size and height.
 ```{r}
 male_data <- subset(houseHo, Gender == "M", select = c(Shoe_size, Height))
 female_data <- subset(houseHo, Gender == "F", select = c(Shoe_size, Height))
@@ -30,18 +29,16 @@ male_data
 female_data
 ```
 
-c. Find the mean of shoe size and height of the respondents.
+# c. Find the mean of shoe size and height of the respondents.
 ```{r}
 mean(houseHo$Shoe_size)
 mean(houseHo$Height)
 ```
 
-d. Is there a relationship between shoe size and height? Why?
-Yes, the greater the the height the bigger shoe size it ranges. However, if you at it closely its not consistent. For instance, one female has a height of 59.0 and the other 62.0 and their shoe sizes are 8.5 and 5.0 respectively.
+# d. Is there a relationship between shoe size and height? Why?
+Yes, the greater the the height the bigger shoe size it ranges. However, if you look at it closely it's not consistent. For instance, one female has a height of 59.0 and the other 62.0 and their shoe sizes are 8.5 and 5.0 respectively.
 
-2.Construct character vector months to a factor with factor() and assign the result to
-factor_months_vector. Print out factor_months_vector and assert that R prints out
-the factor levels below the actual values.
+# 2.Construct character vector months to a factor with factor() and assign the result to factor_months_vector. Print out factor_months_vector and assert that R prints out the factor levels below the actual values.
 ```{r}
 months_vector <- c("March", "April", "January", "November", "January",
                    "September", "October", "September", "November", "August",
@@ -52,14 +49,14 @@ factor_months_vector <- factor(months_vector)
 factor_months_vector
 ```
 
-3.Then check the summary() of the months_vector and factor_months_vector. Interpret the results of both vectors. Are they both equally useful in this case?
+# 3.Then check the summary() of the months_vector and factor_months_vector. Interpret the results of both vectors. Are they both equally useful in this case?
 ```{r}
 summary(months_vector)
 summary(factor_months_vector)
 ```
-The summary of months_vector only shows how many values the vector contains and the data type while the summary of factor_months_vector shows the frequency of each month or level. The summary of the factor is more useful since it provides clear details about the values. 
+The summary of months_vector only shows how many values the vector contains and the data type while the summary of factor_months_vector shows the frequency of each month or level. The summary of the factor is more useful since it provides clearer details about the values. 
 
-4. Create a vector and factor
+# 4. Create a vector and factor
 ```{r}
 factor_data <- c("East", "West", "North")
 frequency_vector <- c(1, 4, 3)
@@ -67,5 +64,15 @@ frequency_vector <- c(1, 4, 3)
 new_order_data <- factor(factor_data,levels = c("East","West","North"))
 print(new_order_data)
 ```
+# 5.
+# a. Import the excel file into the Environment Pane using read.table() function.  
+```{r}
+data <- read.table("import_march.csv", header = TRUE, sep = ",")
+```
 
+# b. View the dataset. Write the R scripts and its result.
+
+```{r}
+data
+```
 
