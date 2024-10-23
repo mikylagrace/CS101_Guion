@@ -75,4 +75,94 @@ data <- read.table("import_march.csv", header = TRUE, sep = ",")
 ```{r}
 data
 ```
+# 6. Create an R Program that allows the User to randomly select numbers from 1 to 50. Then display the chosen number. If the number is beyond the range of the selected choice, it will have to display a string “The number selected is beyond the range of 1 to 50”. If number 20 is inputted by the User, it will have to display “TRUE”, otherwise display the input number.
+```{r}
+exhaustive_search <- function() {
+  
+  number <- as.integer(readline(prompt = "Select a number between 1 and 50: "))
+  
+  if (number == 20) {
+    print(TRUE)
+  } else if 
+    (number < 1 || number > 50) {
+    print("The number selected is beyond the range of 1 to 50")
+  } else {
+    print(number)
+  }
+}
+exhaustive_search()
+```
+# 7. Write a function that prints the minimum number of bills that must be paid, given the price of the snack.
+```{r}
+minBills <- function(snack_price) {
+bills <- c(1000, 500, 200, 100, 50)
+
+count <- 0
+
+for (bill in bills) {
+if (snack_price >= bill) {
+count <- count + (snack_price %/% bill)
+snack_price <- snack_price %% bill
+}
+}
+
+return(count)
+}
+
+snack_price <- as.integer(readline(prompt = "Enter the price of the snack (must be divisible by 50): "))
+min_bills <- minBills(snack_price)
+cat("Minimum number of bills needed:", min_bills, "\n")
+```
+# 8.
+```{r}
+math_df <- data.frame(
+Name = c("Annie", "Thea", "Steve", "Hanna"),
+Grade1 = c(85, 65, 75, 95),
+Grade2 = c(65, 75, 55, 75),
+Grade3 = c(85, 90, 80, 100),
+Grade4 = c(100, 90, 85, 90)
+)
+
+print(math_df)
+
+for (i in 1:nrow(math_df)) {
+  avg_score <- (math_df$Grade1[i] + data$Grade2[i] + data$Grade3[i] + data$Grade4[i]) / 4
+  
+  if (avg_score > 90) {
+    cat(math_df$Name[i], "’s average grade this semester is", round(avg_score, 2), "\n")
+  }
+}
+
+
+for (j in 2:ncol(math_df)) {
+total <- sum(math_df[, j])
+avg_test <- total / nrow(math_df)
+
+if (avg_test < 80) {
+cat("The ", j - 1, "th test was difficult.\n", sep = "")
+}
+}
+
+
+calculate_max <- function(grades) {
+max_grade <- grades[1]
+for (grade in grades) {
+if (grade > max_grade) {
+max_grade <- grade
+}
+}
+return(max_grade)
+}
+
+for (i in 1:nrow(math_df)) {
+grades <- as.numeric(math_df[i, 2:5])
+highest_grade <- calculate_max(grades)
+
+if (highest_grade > 90) {
+cat(students_df$Name[i], "'s highest grade this semester is ", highest_grade, "\n", sep = "")
+}
+}
+
+```
+
 
