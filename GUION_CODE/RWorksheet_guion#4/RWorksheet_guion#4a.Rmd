@@ -77,20 +77,16 @@ data
 ```
 # 6. Create an R Program that allows the User to randomly select numbers from 1 to 50. Then display the chosen number. If the number is beyond the range of the selected choice, it will have to display a string “The number selected is beyond the range of 1 to 50”. If number 20 is inputted by the User, it will have to display “TRUE”, otherwise display the input number.
 ```{r}
-exhaustive_search <- function() {
-  
-  number <- as.integer(readline(prompt = "Select a number between 1 and 50: "))
-  
-  if (number == 20) {
-    print(TRUE)
-  } else if 
-    (number < 1 || number > 50) {
-    print("The number selected is beyond the range of 1 to 50")
-  } else {
-    print(number)
-  }
+user_input =(readline(prompt = "Enter a random number from 1 to 50: "))
+
+
+if(user_input == 20){
+print(TRUE)
+}else if(user_input >= 1 && user_input <= 50){
+print(user_input)
+}else{
+print("The number selected is beyond the range of 1 to 50")
 }
-exhaustive_search()
 ```
 # 7. Write a function that prints the minimum number of bills that must be paid, given the price of the snack.
 ```{r}
