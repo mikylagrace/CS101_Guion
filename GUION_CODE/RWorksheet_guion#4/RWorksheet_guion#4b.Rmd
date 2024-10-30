@@ -28,6 +28,36 @@ for(i in 1:5) {
 }
 ```
 # 3. Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements. Write the R Scripts and its output.
+```{r}
+Fibonacci <- function(start){
+  n <- 0
+  n1 <- 1
+  n2 <- 0
+  
+  if (start == 1){
+      cat(n, "", n1, "", n1, " ")
+  }
+  
+  for (i in 0:start){
+    n2 <- n + n1
+    n <- n1
+    n1 <- n2
+  }
+  
+  repeat{
+    if (n2 > 500) break
+    cat(n2, " ")
+    n2 <- n + n1
+    n <- n1
+    n1 <- n2
+  }
+}
+
+start <- readline(prompt = "Enter starting term: ")
+Fibonacci(start)
+
+```
+
 
 # 4.
 
