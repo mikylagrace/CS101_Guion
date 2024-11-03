@@ -11,8 +11,6 @@ knitr::opts_chunk$set(echo = TRUE)
 # 1.
 # a. Show your solutions on how to import a csv file into the environment.
 ```{r}
-write.csv(mpg, "mpg.csv", row.names = FALSE)
-
 mpg_data <- read.csv("mpg.csv")
 
 ```
@@ -239,14 +237,13 @@ The graph shows that each bar corresponds to the total rating for a specific var
 ```{r}
 reviews_by_date <- alexa_data %>%
   group_by(date) %>%  # Group by date
-  summarize(Total_Verified_Reviews = sum(verified_reviews, na.rm = TRUE))
+  summarize(Total_Verified_Reviews = n())
 
 ggplot(reviews_by_date, aes(x = date, y = Total_Verified_Reviews)) +
   geom_line(color = "blue") +  
   labs(title = "Total Verified Reviews Over Time", x = "Date", y = "Total Verified Reviews") +
   theme_minimal()  
 ```
-
 
 # e. Get the relationship of variations and ratings. Which variations got the most highest in rating? Plot a graph to show its relationship. Show your solution and answer.
 ```{r}
