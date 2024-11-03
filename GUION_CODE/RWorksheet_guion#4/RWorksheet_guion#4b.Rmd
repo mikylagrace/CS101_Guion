@@ -169,9 +169,86 @@ The scatter plot shows the sepal width of each specie on the y axis and sepal le
 # 7.
 
 # a. Rename the white and black variants by using gsub() function.
+```{r}
+library(knitr)
 
+alexa_data$variation <- gsub("Black  Dot", "BlackDot", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Plus", "BlackPlus", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Show", "BlackShow", alexa_data$variation)
+alexa_data$variation <- gsub("Black  Spot", "BlackSpot", alexa_data$variation)
+
+# Fix "White" variants
+alexa_data$variation <- gsub("White  Dot", "WhiteDot", alexa_data$variation)
+alexa_data$variation <- gsub("White  Plus", "WhitePlus", alexa_data$variation)
+alexa_data$variation <- gsub("White  Show", "WhiteShow", alexa_data$variation)
+alexa_data$variation <- gsub("White  Spot", "WhiteSpot", alexa_data$variation)
+
+alexa_data$variation[1052:2000]
+
+knitr::include_graphics("/cloud/project/GUION_CODE/RWorksheet_guion#4/yuh.png")
+
+```
 # b. b. Get the total number of each variations and save it into another object. Save the object as variations.RData. Write the R scripts. What is its result?
+```{r}
+variant_counts <- alexa_data %>%
+  count(variation)
 
+save(variant_counts, file = "variations.RData")
+```
 # c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
-
+```{r}
+barplot(
+  variant_counts$n, 
+  names.arg = variant_counts$variation, 
+  col = "lightblue",
+  main = "Total Count of Each Variant",
+  xlab = "Variants",
+  ylab = "Count",
+  las = 2
+)
+```
 # d. Create a barplot() for the black and white variations. Plot it in 1 frame, side by side. Complete the details of the chart.
+```{r}
+black_white_counts <- variant_counts %>% 
+  filter(grepl("Black|White", variation))
+
+barplot(
+  matrix(black_white_counts$n, nrow = 2, byrow = TRUE), 
+  beside = TRUE, 
+  names.arg = gsub("^(Black|White)\\s", "", black_white_counts$variation[1:(nrow(black_white_counts)/2)]),
+  col = c("black", "white"),
+  main = "Counts of Black and White Variants",
+  xlab = "Variants",
+  ylab = "Count",
+  legend.text = c("Black", "White"),
+  args.legend = list(x = "topright", bty = "n")
+)
+```
+```{r}
+par(mfrow = c(1, 2))
+
+barplot(
+  variant_counts$n, 
+  names.arg = variant_counts$variation, 
+  col = "lightblue",
+  main = "Total Count of Each Variant",
+  xlab = "Variants",
+  ylab = "Count",
+  las = 2
+)
+black_white_counts <- variant_counts %>% 
+  filter(grepl("Black|White", variation))
+
+barplot(
+  matrix(black_white_counts$n, nrow = 2, byrow = TRUE), 
+  beside = TRUE, 
+  names.arg = gsub("^(Black|White)\\s", "", black_white_counts$variation[1:(nrow(black_white_counts)/2)]),
+  col = c("black", "white"),
+  main = "Counts of Black and White Variants",
+  xlab = "Variants",
+  ylab = "Count",
+  legend.text = c("Black", "White"),
+  args.legend = list(x = "topright", bty = "n")
+)
+```
+The first graph shows all variants in a single sequence and its easier to see the total count of each variant in one glance. The second graph groups the black and white variations side-by-side for each type which allows for a direct comparison between black and white variants of each type.
