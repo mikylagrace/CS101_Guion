@@ -139,20 +139,53 @@ ggplot(top_20, aes(x = reorder(model, count), y = count, fill = count)) +
 ```
 
 # 5. Plot the relationship between cyl - number of cylinders and displ - engine displacement using geom_point with aesthetic color = engine displacement. Title should be “Relationship between No. of Cylinders and Engine Displacement”.
-
+```{r}
+ggplot(mpg_data, aes(x = cyl, y = displ, color = displ)) +
+  geom_point(size = 3, alpha = 0.7) +  # Adjust point size and transparency
+  labs(title = "Relationship between No. of Cylinders and Engine Displacement",
+       x = "Number of Cylinders",
+       y = "Engine Displacement (L)") +
+  scale_color_gradient(low = "blue", high = "red") + 
+  theme_minimal()
+```
 # a. How would you describe its relationship? Show the codes and its result.
 
 # 6. Plot the relationship between displ (engine displacement) and hwy(highway miles per gallon). Mapped it with a continuous variable you have identified in #1-c. What is its result? Why it produced such output?
+```{r}
+ggplot(mpg_data, aes(x = displ, y = hwy, color = cty)) +
+  geom_point(size = 3, alpha = 0.7) + 
+  labs(title = "Relationship between Engine Displacement and Highway MPG",
+       x = "Engine Displacement (L)",
+       y = "Highway Miles per Gallon (MPG)") +
+  scale_color_gradient(low = "blue", high = "red") +
+  theme_minimal()
+```
 
 # 6. Import the traffic.csv onto your R environment.
+```{r}
+write.csv(traffic, "traffic.csv", row.names = FALSE)
 
+traffic_data <- read.csv("traffic.csv")
+```
 # a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show your answer.
+```{r}
+length(traffic_data)
+
+variable_names <- names(traffic_data)
+
+variable_names
+```
+
 
 # b. subset the traffic dataset into junctions. What is the R codes and its output?
 
 # c. Plot each junction in a using geom_line(). Show your solution and output.
 
 # 7. From alexa_file.xlsx, import it to your environment
+```{r}
+alexa_data <- read_excel("alexa_file.xlsx")
+```
+
 
 # a. How many observations does alexa_file has? What about the number of columns? Show your solution and answer.
 
