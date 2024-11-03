@@ -88,18 +88,16 @@ ggplot(mpg_summary, aes(x = reorder(model, count), y = manufacturer)) +
 ```
 
 # b. For you, is it useful? If not, how could you modify the data to make it more informative?
-
+For me, it's not really informative, it's hard to compare the sizes to the frequency legend plus some points are overlapping. To change these, maybe add the number to the y axis and use geom_jitter() to make data points more visible.
 # 3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its results.
 ```{r}
-top_20_mpg <- mpg %>% 
-  slice_head(n = 20)
+top_20_mpg <- head(mpg, 20)
 
-ggplot(top_20_mpg, aes(x = model, y = year)) +
-  geom_point(color = "pink", size = 3) +
-  labs(title = "Top 20 Observations of Model vs. Year",
+ggplot(top_20_mpg, aes(x = reorder(model, -year), y = year)) +
+  geom_point(aes(color = class), size = 3) +  # Use points colored by class
+  labs(title = "Model vs Year for Top 20 Vehicles in mpg Dataset",
        x = "Model",
        y = "Year") +
-  theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
@@ -149,6 +147,7 @@ ggplot(mpg_data, aes(x = cyl, y = displ, color = displ)) +
   theme_minimal()
 ```
 # a. How would you describe its relationship? Show the codes and its result.
+The more number of cylinders the higher the displacement. It shows a positive relationship.
 
 # 6. Plot the relationship between displ (engine displacement) and hwy(highway miles per gallon). Mapped it with a continuous variable you have identified in #1-c. What is its result? Why it produced such output?
 ```{r}
@@ -163,9 +162,8 @@ ggplot(mpg_data, aes(x = displ, y = hwy, color = cty)) +
 
 # 6. Import the traffic.csv onto your R environment.
 ```{r}
-write.csv(traffic, "traffic.csv", row.names = FALSE)
-
 traffic_data <- read.csv("traffic.csv")
+
 ```
 # a. How many numbers of observation does it have? What are the variables of the traffic dataset the Show your answer.
 ```{r}
@@ -175,24 +173,96 @@ variable_names <- names(traffic_data)
 
 variable_names
 ```
+# b. Subset the traffic dataset into junctions. What is the R codes and its output?
+```{r}
+unique_junctions <- unique(traffic_data$Junction)
 
+junctions_dataframes <- list()
 
-# b. subset the traffic dataset into junctions. What is the R codes and its output?
+for (junction in unique_junctions) {
+  junctions_dataframes[[junction]] <- traffic_data %>%
+    filter(Junction == junction)
+}
+
+head(junctions_dataframes[[1]])
+```
 
 # c. Plot each junction in a using geom_line(). Show your solution and output.
-
+```{r}
+ggplot(traffic_data, aes(x = DateTime, y = Vehicles, color = Junction)) +
+  geom_line() +
+  labs(title = "Traffic Count by Junction",
+       x = "Date and Time",
+       y = "Number of Vehicles") +
+  theme_minimal() +
+  theme(legend.position = "right") 
+```
 # 7. From alexa_file.xlsx, import it to your environment
 ```{r}
 alexa_data <- read_excel("alexa_file.xlsx")
 ```
-
-
 # a. How many observations does alexa_file has? What about the number of columns? Show your solution and answer.
+```{r}
+num_observations <- nrow(alexa_data)
 
+num_columns <- ncol(alexa_data)
+
+num_observations
+num_columns
+```
 # b. group the variations and get the total of each variations. Use dplyr package. Show solution and answer.
+```{r}
+alexa_data$rating <- as.numeric(as.character(alexa_data$rating))
+alexa_data$verified_reviews <- as.numeric(as.character(alexa_data$verified_reviews))
 
+sum(is.na(alexa_data$rating))  
+sum(is.na(alexa_data$verified_reviews)) 
+
+variation_totals <- alexa_data %>%
+  group_by(variation) %>%  
+  summarize(Total_Rating = sum(rating, na.rm = TRUE),  
+            Total_Verified_Reviews = sum(verified_reviews, na.rm = TRUE))
+
+print(variation_totals)
+```
 # c. Plot the variations using the ggplot() function. What did you observe? Complete the details of the graph. Show solution and answer.
-
+```{r}
+ggplot(variation_totals, aes(x = variation, y = Total_Rating)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  labs(title = "Total Rating by Variation",
+       x = "Variation",
+       y = "Total Rating") +
+  theme_minimal()
+```
+The graph shows that each bar corresponds to the total rating for a specific variation. Although the names on the x axis overlaps.
 # d. Plot a geom_line() with the date and the number of verified reviews. Complete the details of the graphs. Show your answer and solution.
+```{r}
+reviews_by_date <- alexa_data %>%
+  group_by(date) %>%  # Group by date
+  summarize(Total_Verified_Reviews = sum(verified_reviews, na.rm = TRUE))
+
+ggplot(reviews_by_date, aes(x = date, y = Total_Verified_Reviews)) +
+  geom_line(color = "blue") +  
+  labs(title = "Total Verified Reviews Over Time", x = "Date", y = "Total Verified Reviews") +
+  theme_minimal()  
+```
+
 
 # e. Get the relationship of variations and ratings. Which variations got the most highest in rating? Plot a graph to show its relationship. Show your solution and answer.
+```{r}
+average_ratings <- alexa_data %>%
+  group_by(variation) %>%  
+  summarize(Average_Rating = mean(rating, na.rm = TRUE)) 
+
+highest_rating_variation <- average_ratings %>%
+  filter(Average_Rating == max(Average_Rating)) 
+
+ggplot(average_ratings, aes(x = reorder(variation, -Average_Rating), y = Average_Rating)) +
+  geom_bar(stat = "identity", fill = "lightblue") +  
+  labs(title = "Average Ratings by Variation",
+       x = "Variation",
+       y = "Average Rating") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+```
+
