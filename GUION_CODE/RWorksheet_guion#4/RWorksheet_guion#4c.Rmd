@@ -10,30 +10,133 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 # 1.
 # a. Show your solutions on how to import a csv file into the environment.
+```{r}
+write.csv(mpg, "mpg.csv", row.names = FALSE)
 
+mpg_data <- read.csv("mpg.csv")
+
+```
 # b. Which variables from mpg dataset are categorical?
+```{r}
+str(mpg_data)
+```
+The categorical variables are manufacturer, model, trans, drv, fl, and class.
 
 # c. Which are continuous variables?
-
+The continous variables are displ, year, cyl, cty, and hwy.
 # 2. Which manufacturer has the most models in this data set? Which model has the most variations? Show your answer.
+```{r}
+manufacturer_count <- mpg %>%
+  group_by(manufacturer) %>%
+  summarise(num_models = n_distinct(model)) %>%
+  arrange(desc(num_models))
+
+manufacturer_count[1, ]
+
+model_count <- mpg %>%
+  group_by(model) %>%
+  summarise(num_variations = n()) %>%
+  arrange(desc(num_variations))
+
+model_count[1, ]
+```
 
 # a. Group the manufacturers and find the unique models. Show your codes and result.
+```{r}
+unique_models <- mpg %>%
+  group_by(manufacturer) %>%
+  summarise(unique_models_count = n_distinct(model))
 
+unique_models
+```
 # b. Graph the result by using plot() and ggplot(). Write the codes and its result.
+```{r}
+barplot(
+  unique_models$unique_models_count,
+  names.arg = unique_models$manufacturer,
+  las = 2,                    # Make x-axis labels vertical for better readability
+  col = "lightblue",
+  main = "Number of Unique Models by Manufacturer",
+  xlab = "Manufacturer",
+  ylab = "Unique Models Count"
+)
 
+ggplot(unique_models, aes(x = reorder(manufacturer, -unique_models_count), y = unique_models_count)) +
+  geom_bar(stat = "identity", fill = "blue") +
+  labs(title = "Number of Unique Models by Manufacturer", x = "Manufacturer", y = "Unique Models Count") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 # 2. Same dataset will be used. You are going to show the relationship of the modeland the manufacturer.
 
 # a. What does ggplot(mpg, aes(model, manufacturer)) + geom_point() show?
+```{r}
+mpg_summary <- mpg %>%
+  group_by(manufacturer, model) %>%
+  summarise(count = n()) %>%
+  ungroup()
+
+ggplot(mpg_summary, aes(x = reorder(model, count), y = manufacturer)) +
+  geom_point(aes(size = count, color = count)) +
+  labs(title = "Relationship between Model and Manufacturer with Frequency",
+       x = "Model",
+       y = "Manufacturer",
+       size = "Frequency",
+       color = "Frequency") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
 
 # b. For you, is it useful? If not, how could you modify the data to make it more informative?
 
 # 3. Plot the model and the year using ggplot(). Use only the top 20 observations. Write the codes and its results.
+```{r}
+top_20_mpg <- mpg %>% 
+  slice_head(n = 20)
+
+ggplot(top_20_mpg, aes(x = model, y = year)) +
+  geom_point(color = "pink", size = 3) +
+  labs(title = "Top 20 Observations of Model vs. Year",
+       x = "Model",
+       y = "Year") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
 
 # 4. Using the pipe (%>%), group the model and get the number of cars per model. Show codes and its result
-
+```{r}
+car_counts <- mpg_data %>%
+  group_by(model) %>%
+  summarise(count = n()) %>%
+  arrange(desc(count))
+```
 # a. Plot using geom_bar() using the top 20 observations only. The graphs shoudl have a title, labels and colors. Show code and results.
+```{r}
+top_20 <- head(car_counts, 20)
+
+ggplot(top_20, aes(x = reorder(model, count), y = count, fill = count)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count",
+       x = "Car Model",
+       y = "Number of Cars") +
+  scale_fill_gradient(low = "blue", high = "red") + 
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
 
 # b. Plot using the geom_bar() + coord_flip() just like what is shown below. Show codes and its result.
+```{r}
+ggplot(top_20, aes(x = reorder(model, count), y = count, fill = count)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Top 20 Car Models by Count (Horizontal)",
+       x = "Number of Cars",
+       y = "Car Model") +
+  scale_fill_gradient(low = "blue", high = "red") +  # Color gradient
+  theme_minimal() +
+  coord_flip()
+```
 
 # 5. Plot the relationship between cyl - number of cylinders and displ - engine displacement using geom_point with aesthetic color = engine displacement. Title should be “Relationship between No. of Cylinders and Engine Displacement”.
 
