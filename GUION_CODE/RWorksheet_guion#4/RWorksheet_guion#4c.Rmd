@@ -24,6 +24,9 @@ The categorical variables are manufacturer, model, trans, drv, fl, and class.
 The continous variables are displ, year, cyl, cty, and hwy.
 # 2. Which manufacturer has the most models in this data set? Which model has the most variations? Show your answer.
 ```{r}
+library(dplyr)
+library(ggplot2)
+
 manufacturer_count <- mpg %>%
   group_by(manufacturer) %>%
   summarise(num_models = n_distinct(model)) %>%
@@ -197,6 +200,8 @@ ggplot(traffic_data, aes(x = DateTime, y = Vehicles, color = Junction)) +
 ```
 # 7. From alexa_file.xlsx, import it to your environment
 ```{r}
+library(readxl)
+
 alexa_data <- read_excel("alexa_file.xlsx")
 ```
 # a. How many observations does alexa_file has? What about the number of columns? Show your solution and answer.
