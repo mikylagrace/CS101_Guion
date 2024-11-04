@@ -29,33 +29,32 @@ for(i in 1:5) {
 ```
 # 3. Get an input from the user to print the Fibonacci sequence starting from the 1st input up to 500. Use repeat and break statements. Write the R Scripts and its output.
 ```{r}
-Fibonacci <- function(start){
-  n <- 0
-  n1 <- 1
-  n2 <- 0
+printFibonacci <- function(start){
+  first <- 0
+  second <- 1
+  next_num <- 0
   
   if (start == 1){
-      cat(n, "", n1, "", n1, " ")
+      cat(first, "", second, "", second, " ")
   }
   
   for (i in 0:start){
-    n2 <- n + n1
-    n <- n1
-    n1 <- n2
+    next_num <- first + second
+    first <- second
+    second <- next_num
   }
   
   repeat{
-    if (n2 > 500) break
-    cat(n2, " ")
-    n2 <- n + n1
-    n <- n1
-    n1 <- n2
+    if (next_num > 500) break
+    cat(next_num, " ")
+    next_num <- first + second
+    first <- second
+    second <- next_num
   }
 }
-
-start <- readline(prompt = "Enter starting term: ")
-Fibonacci(start)
-
+#start <- readline(prompt = "Enter starting term: ")
+start <- 1
+printFibonacci(start)
 ```
 
 
@@ -63,6 +62,8 @@ Fibonacci(start)
 
 # a. What is the R script for importing an excel or a csv file? Display the first 6 rows of the dataset? Show your codes and its result
 ```{r}
+library(readxl)
+
 shoe <- read_excel("shoe_size.xlsx")
 head(shoe)
 ```
@@ -170,7 +171,10 @@ The scatter plot shows the sepal width of each specie on the y axis and sepal le
 
 # a. Rename the white and black variants by using gsub() function.
 ```{r}
+library(readxl)
 library(knitr)
+
+alexa_data <- read_excel("alexa_file.xlsx") 
 
 alexa_data$variation <- gsub("Black  Dot", "BlackDot", alexa_data$variation)
 alexa_data$variation <- gsub("Black  Plus", "BlackPlus", alexa_data$variation)
@@ -190,6 +194,7 @@ knitr::include_graphics("/cloud/project/GUION_CODE/RWorksheet_guion#4/yuh.png")
 ```
 # b. b. Get the total number of each variations and save it into another object. Save the object as variations.RData. Write the R scripts. What is its result?
 ```{r}
+library(dplyr)
 variant_counts <- alexa_data %>%
   count(variation)
 
